@@ -19,9 +19,6 @@ def kodekata(language):
 
 
 def python_exec(code):
-
-
-	print "CODE --> " + code
 	proc = Popen(["python"], stdin=PIPE, stderr=STDOUT, stdout=PIPE)
 	proc.stdin.write(code)
 	return proc.communicate()[0]
