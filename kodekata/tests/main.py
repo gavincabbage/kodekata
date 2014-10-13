@@ -1,7 +1,6 @@
 # tests.py
 
-from kodekata import app
-import kodekata.routes
+from kodekata import app, routes
 
 import unittest
 from flask import Flask

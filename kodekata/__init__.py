@@ -1,6 +1,9 @@
 # kodekata/__init__.py
 
 
+__all__ = ["app", "routes", "tests"]
+
+
 from flask import Flask
 
 
