@@ -10,7 +10,11 @@ from subprocess import Popen, STDOUT, PIPE
 def kodekata(language):
 
 	if request.method == 'GET':
-		return render_template("base.html", language=language)
+		code_file = open("kodekata/stubs/"+language+".code", 'w')
+		code = code_file.read()
+		test_file = open("kodekata/stubs/"+language+".test", 'w')
+		tests = test_file.read()
+		return render_template("base.html", language=language, code_content=code, test_content=tests)
 	elif request.method == 'POST':
 		return python_exec(request.data)
 	else:
