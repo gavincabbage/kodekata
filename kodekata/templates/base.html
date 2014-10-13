@@ -1,108 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>KodeKata!</title>
-<style type="text/css" media="screen">
-    #sidebar {
-        background-color: blue;
-        position: absolute;
-        top: 0%;
-        right: 80%;
-        bottom: 0%;
-        left: 0%;
-    }
-    #editor1 { 
-        position: absolute;
-        top: 0%;
-        right: 40%;
-        bottom: 20%;
-        left: 20%;
-    }
-    #editor2 { 
-        position: absolute;
-        top: 0%;
-        right: 0%;
-        bottom: 20%;
-        left: 60%;
-    }
-    #console {
-        background-color: yellow;
-        position: absolute;
-        top: 80%;
-        right: 0%;
-        left: 20%;
-        bottom: 0%;
-    }
-</style>
+    <title>KodeKata!</title>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
 </head>
+
 <body>
 
-<div id="sidebar">
-    <h1>KodeKata App</h1>
-    <form id="run-form" method="POST">
-        <textarea id="run-text" name="run-text" style="display:none;"></textarea>
-        <input type="button" value="Run Tests" onclick="runTests();">
-    </form>
-</div>
+    <!-- Left sidebar panel -->
+    <div id="sidebar">
+        <h1>KodeKata App</h1>
+        <form id="run-form" method="POST">
+            <textarea id="run-text" name="run-text" style="display:none;"></textarea>
+            <input type="button" value="Run Tests" onclick="runTests();">
+        </form>
+    </div>
 
-<div id="editor1"># CODE HERE
+    <!-- Code editor -->
+    <div id="editor1">{{code_content}}</div>
 
-def fizzbuzz(num):
-    
-    if num % 15 == 0:
-        return "FizzBuzz"
-    elif num % 5 == 0:
-        return "Buzz"
-    elif num % 3 == 0:
-        return "Fizz"
-    else:
-        return str(num)
-</div>
+    <!-- Test editor -->
+    <div id="editor2">{{test_content}}</div>
 
-<div id="editor2"># TESTS HERE
-import unittest
+    <!-- Bottom console panel -->
+    <div id="console">
+        <form id="console-form">
+            <textarea id="console-text" rows="8" cols="80"></textarea>
+        </form>
+    </div>
 
-class FizzBuzzTests(unittest.TestCase):
-    
-    def test_15_returns_FizzBuzz(self):
-        self.assertEqual(fizzbuzz(15), "FizzBuzz")
-        
-if __name__ == "__main__":
-    unittest.main()
-</div>
-
-<div id="console">
-    <form id="console-form">
-        <textarea id="console-text" rows="8" cols="80"></textarea>
-    </form>
-</div>
-
-<script src="/static/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
-
-    var editor1 = ace.edit("editor1");
-    editor1.setTheme("ace/theme/chaos");
-    editor1.getSession().setMode("ace/mode/python");
-
-    var editor2 = ace.edit("editor2");
-    editor2.setTheme("ace/theme/chaos");
-    editor2.getSession().setMode("ace/mode/python");
-
-    function runTests() {
-        // stole this from here:
-        // http://stackoverflow.com/questions/4677146/post-without-redirecting-page
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        var url = "/kodekata/{{language}}";
-        xmlhttp.open("POST", url, false);
-        xmlhttp.send(editor1.getValue() + editor2.getValue());
-        var respo= xmlhttp.responseText;
-        document.getElementById("console-text").value = xmlhttp.responseText;
-    }
-</script>
+    <!-- Javascript -->
+    <script src="/static/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/editor_setup.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

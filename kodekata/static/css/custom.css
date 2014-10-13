@@ -1,0 +1,33 @@
+/* custom.css */
+
+/* Layout */
+#sidebar {
+    background-color: blue;
+    position: absolute;
+    top: 0%;
+    right: 80%;
+    bottom: 0%;
+    left: 0%;
+}
+#editor1 { 
+    position: absolute;
+    top: 0%;
+    right: 40%;
+    bottom: 20%;
+    left: 20%;
+}
+#editor2 { 
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    bottom: 20%;
+    left: 60%;
+}
+#console {
+    background-color: yellow;
+    position: absolute;
+    top: 80%;
+    right: 0%;
+    left: 20%;
+    bottom: 0%;
+}
