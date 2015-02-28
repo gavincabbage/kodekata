@@ -2,7 +2,9 @@
 
 An app that let's users complete "code katas" through a simple web interface. Users choose a kata and programming language and are presented with stubbed code and tests. The code and tests can be edited and the tests run.
 
-The application is built with Python's Flask web framework.
+A screenshot of the initial prototype:
+
+![prototype screenshot](https://raw.githubusercontent.com/gavincabbage/kodekata-app/master/docs/prototype-screenshot.png)
 
 ## Goals
 
@@ -11,5 +13,6 @@ The application is built with Python's Flask web framework.
 
 ## Challenges
 
-![prototype screenshot](https://raw.githubusercontent.com/gavincabbage/kodekata-app/master/docs/prototype-screenshot.png)
-
+1. Integrating code editors into a clean UI.
+2. Designing and implementing a secure and reliable code execution model on the backend.
+3. Providing broad language support.
