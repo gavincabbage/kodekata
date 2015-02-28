@@ -11,5 +11,5 @@ The application is built with Python's Flask web framework.
 
 ## Challenges
 
-![prototype screenshot](http://raw.github.com/gavincabbage/kodekata-app/docs/prototype-screenshot.png)
+![prototype screenshot](https://raw.githubusercontent.com/gavincabbage/kodekata-app/master/docs/prototype-screenshot.png)
 
