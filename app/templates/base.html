@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>{{config["TITLE"]}}</title>
-    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <title>KodeKata</title>
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
 </head>
 
 <body>
+    
+    <h1>Test Value: {{.Value}}</h1>
 
     <!-- Left sidebar panel -->
     <div id="sidebar">
@@ -19,10 +20,10 @@
     </div>
 
     <!-- Code editor -->
-    <div id="editor1">{{code_content}}</div>
+    <div id="editor1">Code goes here</div>
 
     <!-- Test editor -->
-    <div id="editor2">{{test_content}}</div>
+    <div id="editor2">Tests go here</div>
 
     <!-- Bottom console panel -->
     <div id="console">

@@ -14,14 +14,14 @@ type PageValues struct {
 
 func pageHandler(w http.ResponseWriter, r *http.Request) {
     
-    t, err := template.ParseFiles("/home/ubuntu/workspace/src/github.com/gavincabbage/kodekata/app/templates/kata.html")
+    t, err := template.ParseFiles("/home/ubuntu/workspace/src/github.com/gavincabbage/kodekata/app/templates/base.html")
     if err != nil {
         w.Write([]byte("Error while parsing template"))
     }
     
     val := "HELLO_I_AM_A_TEST_VALUE"
     vals := PageValues{Value: val}
-    err = t.Execute(w, vals)
+    t.Execute(w, vals)
 }
 
 func stubHandler(w http.ResponseWriter, r *http.Request) {
