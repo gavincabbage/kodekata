@@ -65,7 +65,7 @@ func main() {
     r.HandleFunc("/", pageHandler).
       Methods("GET")
       
-    r.HandleFunc("/stubs/{language}/kata/{kata}", stubHandler).
+    r.HandleFunc("/kata/{kata}/lang/{language}", stubHandler).
       Methods("GET")
       
     r.HandleFunc("/run/{language}", runHandler).

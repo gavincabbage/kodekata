@@ -36,13 +36,56 @@ function updateCodeStubs() {
         "Clicked <Update> Button, kata=" + selectedKata + 
         ", lang=" + selectedLanguage
     );
+    
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp=new XMLHttpRequest();
+    }
+    else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); // for IE6, IE5
+    }
+    
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            var response = JSON.parse(xmlhttp.responseText);
+            codeEditor.setValue(response.code);
+            testEditor.setValue(response.code);
+        }
+    }
+    
+    var url = "/kata/" + selectedKata + "/lang/" + selectedLanguage;
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
 }
 
 setupEditors();
 writeToConsole("Welcome to KodeKata!");
 codeEditor.setValue("# This is the code editor. Code goes here.", 1);
 testEditor.setValue("# And this is the test editor. Tests go here.", 1);
-document.getElementById("").focus();
+
+
+function loadXMLDoc()
+{
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+        }
+    }
+    
+    xmlhttp.open("GET","ajax_info.txt",true);
+    xmlhttp.send();
+}
 
 
 // EX: AJAX
