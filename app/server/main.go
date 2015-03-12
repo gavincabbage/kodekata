@@ -7,11 +7,8 @@ import (
     "github.com/gorilla/mux"
     "html/template"
     "encoding/json"
+    "./structs"
 )
-
-type MainPageValues struct {
-    MainTitleText string
-}
 
 func pageHandler(w http.ResponseWriter, r *http.Request) {
     
@@ -21,13 +18,8 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
     }
     
     mainTitleText := "KodeKata"
-    vals := MainPageValues{MainTitleText: mainTitleText}
+    vals := structs.MainPageValues{MainTitleText: mainTitleText}
     t.Execute(w, vals)
-}
-
-type StubResponse struct {
-    Code    string  `json:"code"`
-    Tests   string  `json:"tests"`
 }
 
 func stubHandler(w http.ResponseWriter, r *http.Request) {
@@ -38,7 +30,7 @@ func stubHandler(w http.ResponseWriter, r *http.Request) {
     d := "Hit stubHandler, lang = <" + lang + ">, kata = <" + kata + ">"
     fmt.Println(d)
     
-    responseData := StubResponse{
+    responseData := structs.StubResponse{
         Code: "You chose lang = " + lang,
         Tests: "You chose kata = " + kata}
         
@@ -80,40 +72,3 @@ func main() {
     host := os.Getenv("IP") + ":" + os.Getenv("PORT")
     http.ListenAndServe(host, r)
 }
-
-
-// package main
-
-// import (
-//   "encoding/json"
-//   "net/http"
-// )
-
-// func main() {
-//   http.HandleFunc("/foo", foo)
-//   http.HandleFunc("/bar", bar)
-//   http.ListenAndServe(":3000", nil)
-// }
-
-// func foo(w http.ResponseWriter, r *http.Request) {
-//   w.Header().Set("Server", "A Go Web Server")
-//   w.WriteHeader(200)
-// }
-
-// type Profile struct {
-//   Name    string
-//   Hobbies []string
-// }
-
-// func bar(w http.ResponseWriter, r *http.Request) {
-//   profile := Profile{"Alex", []string{"snowboarding", "programming"}}
-
-//   js, err := json.Marshal(profile)
-//   if err != nil {
-//     http.Error(w, err.Error(), http.StatusInternalServerError)
-//     return
-//   }
-
-//   w.Header().Set("Content-Type", "application/json")
-//   w.Write(js)
-// }
