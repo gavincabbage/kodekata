@@ -1,0 +1,61 @@
+html {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+
+#sidebar {
+    position: absolute;
+    top: 0%;
+    right: 80%;
+    bottom: 0%;
+    left: 0%;
+}
+#sidebar .choice {
+    margin-top: 15%;
+    margin-left: 5%;
+    width: 90%;
+}
+#sidebar .choice select {
+    margin-top: 3%;
+    width: 100%;
+}
+#sidebar #update-button {
+    margin-top: 15%;
+    margin-left: 5%;
+    width: 90%;
+}
+#sidebar #run-tests-button {
+    margin-left: 5%;
+    margin-top: 30%;
+    width: 90%;
+}
+
+#codeEditor {
+    position: absolute;
+    top: 0%;
+    right: 40%;
+    bottom: 20%;
+    left: 20%;
+}
+
+#testEditor { 
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    bottom: 20%;
+    left: 60%;
+}
+
+#console {
+    position: absolute;
+    top: 80%;
+    right: 0%;
+    left: 20%;
+    bottom: 0%;
+}
+#console #console-text {
+    width: 100%;
+    height: 100%;
+}

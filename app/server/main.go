@@ -6,10 +6,11 @@ import (
     "net/http"
     "github.com/gorilla/mux"
     "html/template"
+    "encoding/json"
 )
 
-type PageValues struct {
-    Value string
+type MainPageValues struct {
+    MainTitleText string
 }
 
 func pageHandler(w http.ResponseWriter, r *http.Request) {
@@ -19,9 +20,14 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
         w.Write([]byte("Error while parsing template"))
     }
     
-    val := "HELLO_I_AM_A_TEST_VALUE"
-    vals := PageValues{Value: val}
+    mainTitleText := "KodeKata"
+    vals := MainPageValues{MainTitleText: mainTitleText}
     t.Execute(w, vals)
+}
+
+type StubResponse struct {
+    Code    string  `json:"code"`
+    Tests   string  `json:"tests"`
 }
 
 func stubHandler(w http.ResponseWriter, r *http.Request) {
@@ -31,7 +37,16 @@ func stubHandler(w http.ResponseWriter, r *http.Request) {
     
     d := "Hit stubHandler, lang = <" + lang + ">, kata = <" + kata + ">"
     fmt.Println(d)
-    w.Write([]byte(d))
+    
+    responseData := StubResponse{
+        Code: "You chose lang = " + lang,
+        Tests: "You chose kata = " + kata}
+        
+    response, err := json.Marshal(responseData)
+    if err != nil {
+        fmt.Println("ERROR in json.Marshal")
+    }
+    w.Write([]byte(string(response)))
 }
 
 func runHandler(w http.ResponseWriter, r *http.Request) {

@@ -1,33 +1,34 @@
-/* custom.css */
-
-/* Layout */
 #sidebar {
-    background-color: blue;
-    position: absolute;
-    top: 0%;
-    right: 80%;
-    bottom: 0%;
-    left: 0%;
+    color: white;
+    background-color: #141414;
 }
-#editor1 { 
-    position: absolute;
-    top: 0%;
-    right: 40%;
-    bottom: 20%;
-    left: 20%;
+#sidebar #main-header-text {
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
 }
-#editor2 { 
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    bottom: 20%;
-    left: 60%;
+#sidebar .choice .select-label {
+    font-family: "Courier New", Courier, monospace;
 }
-#console {
-    background-color: black;
-    position: absolute;
-    top: 80%;
-    right: 0%;
-    left: 20%;
-    bottom: 0%;
+#sidebar button {
+    color: #090909;
+    background-color: white;
+    outline: none;
+    border: 3px solid #141414;
+}
+#sidebar button:hover {
+    border: 3px solid green;
+}
+#console #console-text {
+    padding-left: 2%;
+    box-sizing: border-box;         /* For IE and modern versions of Chrome */
+    -moz-box-sizing: border-box;    /* For Firefox                          */
+    -webkit-box-sizing: border-box; /* For Safari                           */
+    resize: none;
+    font-family: "Courier New", Courier, monospace;
+    color: green;
+    background-color: #090909;
+    border-color: #090909;
+}
+#console #console-text:focus {
+    outline: none;
 }
