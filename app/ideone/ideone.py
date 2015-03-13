@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from SOAPpy import WSDL
 from time import sleep
 from json import loads
+from os import getenv
 
 
 app = Flask(__name__)
@@ -16,7 +17,7 @@ languages = {
 }
 
 user = 'gavincabbage'
-password = 'kodekatafun'
+password = getenv('KODEKATA_API_PASSWORD') 
 
 
 
