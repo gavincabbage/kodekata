@@ -12,16 +12,16 @@ html {
     bottom: 0%;
     left: 0%;
 }
-#sidebar .choice {
+#sidebar #kata-update-form .choice {
     margin-top: 15%;
     margin-left: 5%;
     width: 90%;
 }
-#sidebar .choice select {
+#sidebar #kata-update-form .choice select {
     margin-top: 3%;
     width: 100%;
 }
-#sidebar #update-button {
+#sidebar #kata-update-form #update-button {
     margin-top: 15%;
     margin-left: 5%;
     width: 90%;

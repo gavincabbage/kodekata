@@ -1,6 +1,7 @@
 var codeEditor;
 var testEditor;
 
+
 function setupEditors() {
     codeEditor = ace.edit("codeEditor");
     codeEditor.setTheme("ace/theme/twilight");
@@ -11,6 +12,7 @@ function setupEditors() {
     testEditor.getSession().setMode("ace/mode/python");   
 }
 
+
 function writeToConsole(text) {
     textarea = document.getElementById("console-text");
     text += "\n";
@@ -18,9 +20,34 @@ function writeToConsole(text) {
     textarea.scrollTop = textarea.scrollHeight;
 }
 
+
 function runTests() {
     writeToConsole("Clicked <Run Tests> Button");
+    
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp=new XMLHttpRequest();
+    }
+    else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); // for IE6, IE5
+    }
+    
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            var response = JSON.parse(xmlhttp.responseText);
+            writeToConsole(response.result);
+        }
+    }
+    
+    var url = "/run/python";
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.send(JSON.stringify({ 
+                    code: codeEditor.getSession().getValue(), 
+                    tests: testEditor.getSession().getValue() 
+                }));
 }
+
 
 function updateCodeStubs() {
     // Note: this bombs if nothing is selected, probably just make sure
@@ -49,7 +76,7 @@ function updateCodeStubs() {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             var response = JSON.parse(xmlhttp.responseText);
             codeEditor.setValue(response.code);
-            testEditor.setValue(response.code);
+            testEditor.setValue(response.tests);
         }
     }
     
@@ -58,48 +85,12 @@ function updateCodeStubs() {
     xmlhttp.send();
 }
 
+
 setupEditors();
 writeToConsole("Welcome to KodeKata!");
 codeEditor.setValue("# This is the code editor. Code goes here.", 1);
 testEditor.setValue("# And this is the test editor. Tests go here.", 1);
 
-
-function loadXMLDoc()
-{
-    if (window.XMLHttpRequest)
-    {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-    }
-    else
-    {// code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    
-    xmlhttp.onreadystatechange=function()
-    {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200)
-        {
-            document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
-        }
-    }
-    
-    xmlhttp.open("GET","ajax_info.txt",true);
-    xmlhttp.send();
-}
-
-
-// EX: AJAX
-// http://stackoverflow.com/questions/4677146/post-without-redirecting-page
-// if (window.XMLHttpRequest) {
-//     xmlhttp = new XMLHttpRequest();
-// } else {
-//     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-// }
-// var url = "/kodekata/{{language}}";
-// xmlhttp.open("POST", url, false);
-// xmlhttp.send(editor1.getValue() + editor2.getValue());
-// var respo= xmlhttp.responseText;
-// document.getElementById("console-text").value = xmlhttp.responseText;
 
 // EX: Populate select list
 // window.onload = function() {

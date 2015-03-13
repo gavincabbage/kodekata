@@ -8,6 +8,8 @@ import (
     "html/template"
     "encoding/json"
     "./structs"
+    "io/ioutil"
+    "bytes"
 )
 
 func pageHandler(w http.ResponseWriter, r *http.Request) {
@@ -47,7 +49,25 @@ func runHandler(w http.ResponseWriter, r *http.Request) {
     
     d := "Hit runHandler, lang = <" + lang + ">"
     fmt.Println(d)
-    w.Write([]byte(d))
+    
+    body, err := ioutil.ReadAll(r.Body)
+    if err != nil {
+        fmt.Println("problem reading request")
+    }
+    
+    resp, err := http.Post("http://127.0.0.1:4242/run/" + lang, "application/json", bytes.NewReader(body))
+    if err != nil {
+    	fmt.Println("problem hitting Python server")
+    }
+    
+    defer resp.Body.Close()
+    
+    body, err = ioutil.ReadAll(resp.Body)
+    if err != nil {
+        fmt.Println("problem reading response")
+    }
+    
+    w.Write([]byte(body))
 }
 
 func main() {

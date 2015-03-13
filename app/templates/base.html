@@ -5,6 +5,7 @@
     <title>KodeKata</title>
     <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+    <meta charset="utf-8"/>
 </head>
 
 <body>
@@ -13,36 +14,40 @@
     <div id="sidebar">
         
         <h1 id="main-header-text">{{.MainTitleText}}</h1>
+        
+        <form id="kata-update-form">
 
-        <div class="choice">
-            <label class="select-label" for="kata-select">
-                Select a code kata:
-            </label>
-            <select id="kata-select" size=5>
-                <option value="bowling">BowlingGame</option>
-                <option value="fizzbuzz">FizzBuzz</option>
-                <option value="fizzbuzzbaz">FizzBuzzBaz</option>
-                <option value="roman">RomanNumerals</option>
-                <option value="hailstone">HailstoneSequence</option></option>
-                <option value="anagrams">Anagrams</option>
-            </select>
-        </div>
+            <div class="choice">
+                <label class="select-label" for="kata-select">
+                    Select a code kata:
+                </label>
+                <select id="kata-select" size=5>
+                    <option value="bowling">BowlingGame</option>
+                    <option value="fizzbuzz">FizzBuzz</option>
+                    <option value="fizzbuzzbaz">FizzBuzzBaz</option>
+                    <option value="roman">RomanNumerals</option>
+                    <option value="hailstone">HailstoneSequence</option>
+                    <option value="anagrams">Anagrams</option>
+                </select>
+            </div>
+            
+            <div class="choice">
+                <label class="select-label" for="kata-select">
+                    Select a language:
+                </label>
+                <select id="language-select" size=5>
+                    <option value="go">Go</option>
+                    <option value="python">Python</option>
+                    <option value="ruby">Ruby</option>
+                    <option value="java">Java</option>
+                    <option value="javascript">Java</option>
+                    <option value="c">C</option>
+                </select>
+            </div>
+            
+            <button id="update-button" type="button" onclick="updateCodeStubs();">Update</button>
         
-        <div class="choice">
-            <label class="select-label" for="kata-select">
-                Select a language:
-            </label>
-            <select id="language-select" size=5>
-                <option value="go">Go</option>
-                <option value="python">Python</option>
-                <option value="ruby">Ruby</option>
-                <option value="java">Java</option>
-                <option value="javascript">Java</option>
-                <option value="c">C</option>
-            </select>
-        </div>
-        
-        <button id="update-button" type="button" onclick="updateCodeStubs();">Update</button><br>
+        </form>
         
         <button id="run-tests-button" type="button" onclick="runTests();">Run Tests</button>
         
